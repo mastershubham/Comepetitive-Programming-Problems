@@ -1,0 +1,44 @@
+def neighbours(p,grid):
+    x,y = p[0],p[1]
+    m,n = len(grid),len(grid[0])
+    result = []
+    v = [-1,0,1]
+    for  i in v:
+        for j in v:
+            if i != 0 or j != 0:
+                x1 = x+i
+                y1 = y+j
+                if (0<=x1<m) and (0<=y1<n):
+                    if ord(grid[x1][y1]) - ord(grid[x][y]) == 1:
+                        result.append((x1,y1))  
+    return result
+
+def dfs(p,grid):
+    memo = {}
+    if p in memo:
+        return memo[p]
+    else:
+        x,y = p[0],p[1]
+        L = neighbours(p,grid)
+        if len(L) == 0:
+            memo[p] = 1
+        else:
+            memo[p] = 1 + max([dfs(i,grid) for i in L])
+        return memo[p]
+
+count = 1
+while True:    
+    m,n = map(int,input().split())
+    if (m and n):
+        grid = [input() for i in range(m)]
+        start = [(i,j) for i in range(m) for j in range(n) if grid[i][j] == "A"]
+        if len(start) == 0:
+            print(f'Case {count}: {0}')
+        else:
+            answer = max([dfs(p,grid) for p in start])
+            print(f'Case {count}: {answer}')
+        count += 1
+    else:
+        break
+        
+        
