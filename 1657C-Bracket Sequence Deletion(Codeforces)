@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(){
+    ll t;
+    cin>>t;
+    while(t--){
+        ll n; string s;
+        cin>>n>>s;
+        ll pos = 0,oper = 0;
+        while(pos < n-1){
+            if(s[pos] == '(' || (s[pos] == ')' && s[pos+1] == ')')){
+                pos += 2;
+                oper += 1;
+            }
+            else{
+              	ll r = pos + 1;
+                while(r < n && s[r] != ')'){
+                   	r++;
+                }
+              	if (r == n){break;}
+              	pos = r + 1;
+              	oper += 1;
+            }
+        }
+        cout<<oper<<" "<<n-pos<<'\n';
+    }
+}
