@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+struct pt{
+    double x,y;
+};
+
+ll orientation(pt a,pt b,pt c){
+    double cross_product = (b.x-a.x)*(c.y-b.y) - (c.x-b.x)*(b.y-a.y);
+    if (cross_product > 0) return 1;
+    if (cross_product < 0) return -1;
+    return 0;
+}
+
+bool comparator(pt a,pt b){
+    return (make_pair(a.x,a.y) < make_pair(b.x,b.y));
+}
+
+void convex_hull(vector<pt>& points){
+    sort(points.begin(),points.end(),comparator);
+    pt p0 = points[0],p1 = points[1];
+    vector<pt> build;
+    build.push_back(p0);
+    build.push_back(p1);
+    for(ll i = 2;i<points.size();i++){
+        pt p = points[i];
+        while(build.size()>1 && orientation(build[build.size()-2],build[build.size()-1],p) >= 0){
+            build.pop_back();
+        }
+        build.push_back(p);
+    }
+    points = build;
+}
+
+int main(){
+    ll T;
+    cin>>T;
+    while(T--){
+        ll N,R;
+        cin>>N>>R;
+        vector<pt> points;
+        for(ll i = 0;i<N;i++){
+            pt p;
+            cin>>p.x>>p.y;
+            points.push_back(p);
+        }
+        convex_hull(points);
+        if(points.size() <= R) cout<<"YES\n";
+        else cout<<"NO\n";
+    }
+    
+}
