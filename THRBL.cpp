@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAX_N = 50000;
+const int MAX_N = 50001;
 const int LOG = 16;
 int a[MAX_N];
 int mem[MAX_N][LOG];
