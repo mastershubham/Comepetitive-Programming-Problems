@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int;
 
 const int MAX_N = 100000;
 const int LOG = 20;
