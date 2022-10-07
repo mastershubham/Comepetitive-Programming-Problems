@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAX_N = 100000;
-const int LOG = 20;
+const int MAX_N = 100'001;
+const int LOG = 17;
 int a[MAX_N];
 int mem[MAX_N][LOG];
 int bin_log[MAX_N];
@@ -33,7 +33,7 @@ int main(){
 
     int q;
     cin>>q;
-    while(q--){
+    while(q--){;
         int l,r;
         cin>>l>>r;
         cout<<query(l,r)<<'\n';
